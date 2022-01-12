@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unknow_error">未知错误</string>
+    <string name="parsing_error">解析错误</string>
+    <string name="network_error">网络错误</string>
+    <string name="protocol_error">协议出错</string>
+    <string name="certificate_error">证书出错</string>
+    <string name="connection_timed_out">连接超时</string>
+
+    <string name="base_str_empty">这里没有内容哦</string>
+    <string name="base_str_go_back">返回</string>
+    <string name="base_loading">加载中...</string>
+    <string name="base_retry_refresh">加载失败，请刷新重试</string>
+    <string name="base_str_refresh">刷新</string>
+    <string name="base_str_page_err">页面获取失败</string>
+    <string name="base_network_tips">请尝试以下办法：\n1、请检查是否开启网络权限\n2、请检查当前网络状态并点击刷新</string>
+    <string name="base_str_net_err">网络不可用，请检查网络设置</string>
+</resources>

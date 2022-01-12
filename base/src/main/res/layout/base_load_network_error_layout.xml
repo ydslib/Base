@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/load_error_img"
+        android:layout_width="@dimen/dp_220"
+        android:layout_height="@dimen/dp_160"
+        android:layout_marginTop="@dimen/dp_224"
+        android:src="@drawable/ic_load_network_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/load_network_error_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_64"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_64"
+        android:gravity="center"
+        android:text="@string/base_str_page_err"
+        android:textColor="#636363"
+        android:textSize="@dimen/dp_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/load_error_img" />
+
+    <TextView
+        android:id="@+id/load_network_error_tips2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_64"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_64"
+        android:lineHeight="@dimen/dp_24"
+        android:text="@string/base_network_tips"
+        android:textColor="#636363"
+        app:layout_constraintTop_toBottomOf="@+id/load_network_error_tips" />
+
+    <TextView
+        android:id="@+id/reload"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@drawable/base_radius24_colorffeb4534"
+        android:gravity="center"
+        android:text="@string/base_str_refresh"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/dp_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/load_network_error_tips2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

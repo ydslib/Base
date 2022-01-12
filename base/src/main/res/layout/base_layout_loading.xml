@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view_bg"
+        android:layout_width="@dimen/dp_114"
+        android:layout_height="@dimen/dp_128"
+        android:background="@drawable/base_radius10_color7f000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/load"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_32"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="@id/view_bg"
+        app:layout_constraintRight_toRightOf="@id/view_bg"
+        app:layout_constraintTop_toTopOf="@id/view_bg"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="lottie/base_loading.json"
+        app:lottie_imageAssetsFolder="images"
+        app:lottie_loop="true" />
+
+    <TextView
+        android:id="@+id/ftv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="@dimen/dp_7"
+        android:text="@string/base_loading"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@+id/load"
+        app:layout_constraintBottom_toBottomOf="@id/view_bg"
+        app:layout_constraintLeft_toLeftOf="@id/view_bg"
+        app:layout_constraintRight_toRightOf="@id/view_bg" />
+</androidx.constraintlayout.widget.ConstraintLayout>
