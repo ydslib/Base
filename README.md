@@ -17,6 +17,6 @@ Add the dependency
 
 ```groovy
     dependencies {
-        implementation 'com.github.ydslib:Base:1.0.0'
+        implementation 'com.github.ydslib:Base:1.0.1'
     }
 ```
