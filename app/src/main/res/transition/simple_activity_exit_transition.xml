@@ -1,0 +1,17 @@
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <slide android:duration="500" android:slideEdge="bottom" >
+        <targets>
+            <target android:targetId="@id/relative_bottom"/>
+        </targets>
+    </slide>
+
+    <slide
+        android:duration="500"
+        android:slideEdge="top">
+        <targets>
+            <target android:targetId="@id/relative_top"/>
+        </targets>
+    </slide>
+
+</transitionSet>

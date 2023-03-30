@@ -8,9 +8,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Base">
+        android:theme="@style/AppTheme">
         <activity
-            android:name="com.crystallake.demo.MainActivity"
+            android:name=".SecondActivity"
+            android:exported="false" />
+        <activity android:name=".transition.ChangeBoundsActivity"/>
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

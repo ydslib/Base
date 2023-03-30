@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/relative_top"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:transitionGroup="true">
+
+            <ImageView
+                android:id="@+id/full_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/full_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:transitionName="profileImage" />
+
+            <TextView
+                android:id="@+id/content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/full_pic"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textSize="20sp"
+                android:transitionName="profileText" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/relative_top"
+            android:background="@android:color/darker_gray"
+            android:transitionGroup="true">
+
+            <TextView
+                android:id="@+id/tv_des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="10dp"
+                android:textColor="@android:color/holo_orange_light"
+                android:textSize="21sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>
