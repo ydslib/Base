@@ -56,6 +56,11 @@ class MultiDataBindingAdapter : BaseAdapter<ItemProxy<*>, ItemViewHolder>() {
         mViewType.put(item.itemViewType, item)
     }
 
+    fun clear(){
+        dataList.clear()
+        mViewType.clear()
+    }
+
     fun getItem(position: Int): ItemProxy<*> {
         return dataList[position]
     }

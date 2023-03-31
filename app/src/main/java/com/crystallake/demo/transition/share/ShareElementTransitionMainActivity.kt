@@ -6,6 +6,7 @@ import com.crystallake.base.config.DataBindingConfig
 import com.crystallake.base.vm.BaseViewModel
 import com.crystallake.demo.R
 import com.crystallake.demo.databinding.ActivityShareElementTransitionMainBinding
+import com.crystallake.demo.transition.browse.BrowseShareElementTransitionActivity
 
 class ShareElementTransitionMainActivity : DataBindingActivity<ActivityShareElementTransitionMainBinding, BaseViewModel>() {
 
@@ -21,7 +22,7 @@ class ShareElementTransitionMainActivity : DataBindingActivity<ActivityShareElem
         }
 
         mBinding?.layoutShareElementBrowse?.setOnClickListener {
-//            startActivity(Intent(this,))
+            startActivity(Intent(this, BrowseShareElementTransitionActivity::class.java))
         }
     }
 }
