@@ -13,6 +13,16 @@ object Util {
     private var sApplication: Application? = null
     private val ACTIVITY_LIFECYCLE by lazy { ActivityLifecycleImpl() }
 
+    private var debuggable = false
+
+    fun openDebug() {
+        debuggable = true
+    }
+
+    fun isDebuggable(): Boolean {
+        return debuggable
+    }
+
     fun setUp(context: Context?) {
         context?.let {
             setUp((it as Application).applicationContext)
@@ -172,7 +182,7 @@ object Util {
                     val activityRecordClass: Class<*>? = activityRecord?.javaClass
                     val pausedField = activityRecordClass?.getDeclaredField("paused")
                     pausedField?.isAccessible = true
-                    if (pausedField?.getBoolean(activityRecord)==false) {
+                    if (pausedField?.getBoolean(activityRecord) == false) {
                         val activityField = activityRecordClass.getDeclaredField("activity")
                         activityField.isAccessible = true
                         return activityField[activityRecord] as? Activity

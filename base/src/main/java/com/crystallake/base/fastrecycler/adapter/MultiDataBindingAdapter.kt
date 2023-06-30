@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.crystallake.base.BuildConfig
 import com.crystallake.base.fastrecycler.ItemProxy
 import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder
+import com.crystallake.base.utils.Util
 
 class MultiDataBindingAdapter : BaseAdapter<ItemProxy<*>, ItemViewHolder>() {
 
@@ -17,7 +18,7 @@ class MultiDataBindingAdapter : BaseAdapter<ItemProxy<*>, ItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        if (BuildConfig.DEBUG) {
+        if (Util.isDebuggable() || isDebuggable()) {
             val startTime = System.nanoTime()
             processViewHolder(holder, position)
             Log.i("onBindViewHolder", "${System.nanoTime() - startTime}")
