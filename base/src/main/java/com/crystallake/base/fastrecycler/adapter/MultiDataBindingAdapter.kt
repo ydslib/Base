@@ -1,7 +1,9 @@
 package com.crystallake.base.fastrecycler.adapter
 
+import android.util.Log
 import android.util.SparseArray
 import android.view.ViewGroup
+import com.crystallake.base.BuildConfig
 import com.crystallake.base.fastrecycler.ItemProxy
 import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder
 
@@ -15,6 +17,16 @@ class MultiDataBindingAdapter : BaseAdapter<ItemProxy<*>, ItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        if (BuildConfig.DEBUG) {
+            val startTime = System.nanoTime()
+            processViewHolder(holder, position)
+            Log.i("onBindViewHolder", "${System.nanoTime() - startTime}")
+        } else {
+            processViewHolder(holder, position)
+        }
+    }
+
+    private fun processViewHolder(holder: ItemViewHolder, position: Int) {
         val itemProxy = if (dataList.size > position) {
             dataList[position]
         } else throw ExceptionInInitializerError("please init this viewType from item")
@@ -56,7 +68,7 @@ class MultiDataBindingAdapter : BaseAdapter<ItemProxy<*>, ItemViewHolder>() {
         mViewType.put(item.itemViewType, item)
     }
 
-    fun clear(){
+    fun clear() {
         dataList.clear()
         mViewType.clear()
     }

@@ -1,9 +1,11 @@
 package com.crystallake.base.fastrecycler.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import com.crystallake.base.BuildConfig
 import com.crystallake.base.fastrecycler.viewholder.ItemViewHolder
 
 abstract class SingleDataBindingAdapter<T, VB : ViewBinding> : BaseAdapter<T, ItemViewHolder>() {
@@ -20,6 +22,16 @@ abstract class SingleDataBindingAdapter<T, VB : ViewBinding> : BaseAdapter<T, It
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        if (BuildConfig.DEBUG) {
+            val startTime = System.nanoTime()
+            processBindViewHolder(holder, position)
+            Log.i("onBindViewHolder", "cost: ${System.nanoTime() - startTime}")
+        } else {
+            processBindViewHolder(holder, position)
+        }
+    }
+
+    private fun processBindViewHolder(holder: ItemViewHolder, position: Int) {
         (holder.binding as? VB)?.let {
             mBinding = it
             onItemClickListener?.let { itemClickListener ->
