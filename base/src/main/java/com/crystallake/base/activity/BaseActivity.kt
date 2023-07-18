@@ -31,7 +31,9 @@ abstract class BaseActivity<VM : ViewModel> : AppCompatActivity() {
 
     fun isVMClass(type: Class<*>): Boolean {
         return type.superclass?.let {
-            if (it?.name == "androidx.lifecycle.ViewModel" || it?.name == "com.crystallake.base.vm.BaseViewModel") {
+            if (it?.name == "androidx.lifecycle.ViewModel" || it?.name == "com.crystallake.base.vm.BaseViewModel"
+                || it.name == "androidx.lifecycle.AndroidViewModel"
+            ) {
                 true
             } else {
                 isVMClass(it)
