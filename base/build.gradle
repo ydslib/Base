@@ -2,6 +2,32 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'maven'
+}
+// 获取当前系统时间
+static def releaseTime() {
+    return new Date().format("yyyyMMddHHmmss")
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: LOCAL_REPO_URL)
+        pom.groupId = GROUP_ID
+        pom.artifactId = POM_ARTIFACT_ID
+        def time = releaseTime()
+        pom.version = VERSION + "-$time"
+        println(pom.version)
+    }
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+
+artifacts {
+    archives androidSourcesJar
 }
 
 android {

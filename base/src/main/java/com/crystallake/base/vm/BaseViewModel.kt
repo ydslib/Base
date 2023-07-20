@@ -1,12 +1,13 @@
 package com.crystallake.base.vm
 
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.crystallake.base.net.config.NetConfig
 import com.crystallake.base.net.ApiException
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import java.util.concurrent.atomic.AtomicInteger
 
 open class BaseViewModel : ViewModel(), LifecycleObserver {
@@ -23,6 +24,25 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
 
     //请求数量，当为0时没有正在请求的接口，如果数量不为0，表示有正在请求的接口
     val requestLiveData = MutableLiveData<Int>()
+
+
+    val mStateLiveData = MutableLiveData<State>()
+
+    fun <T> flowEx(method: RequestMethod, block: suspend () -> T) = flow {
+        emit(block())
+    }.onStart {
+        if (method is RequestMethod.Refresh) {
+            mStateLiveData.value = State.RefreshState
+        } else if (method is RequestMethod.Loading) {
+            mStateLiveData.value = State.LoadingState
+        } else if (method is RequestMethod.LoadMore) {
+            mStateLiveData.value = State.LoadMoreState
+        }
+    }.onCompletion {
+        mStateLiveData.value = State.SuccessState
+    }.catch { cause ->
+        mStateLiveData.value = State.ErrorState(cause.message)
+    }.asLiveData()
 
     private fun launch(block: suspend CoroutineScope.() -> Unit) =
         viewModelScope.launch(Dispatchers.Main) {
@@ -84,4 +104,18 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
             )
         }
     }
+}
+
+sealed class State {
+    object LoadingState : State()
+    object SuccessState : State()
+    object LoadMoreState : State()
+    object RefreshState : State()
+    class ErrorState(val errorMsg: String?) : State()
+}
+
+sealed class RequestMethod {
+    object Refresh : RequestMethod()
+    object LoadMore : RequestMethod()
+    object Loading : RequestMethod()
 }
