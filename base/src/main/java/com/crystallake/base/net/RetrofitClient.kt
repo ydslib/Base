@@ -20,9 +20,18 @@ object RetrofitClient {
     private var mInterceptors: List<Interceptor> = arrayListOf()
     private var localServiceMap = mutableMapOf<Class<*>, Any>()
 
+    private var retrofit: Retrofit? = null
+
     fun setup(baseUrl: String, interceptors: List<Interceptor>) {
         BASE_URL = baseUrl
         mInterceptors = interceptors
+        retrofit = Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl(BASE_URL)
+            .addConverterFactory(NullConverterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
     private val cookiePersistor by lazy {
@@ -54,22 +63,12 @@ object RetrofitClient {
         build.build()
     }
 
-    private val retrofit by lazy {
-        Retrofit.Builder()
-            .client(okHttpClient)
-            .baseUrl(BASE_URL)
-            .addConverterFactory(NullConverterFactory.create())
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
     fun <T> create(service: Class<T>): T {
         return if (localServiceMap.containsKey(service)) {
             localServiceMap[service] as T
         } else {
             val localService =
-                retrofit.create(service) ?: throw RuntimeException("Api service is null!")
+                retrofit?.create(service) ?: throw RuntimeException("Api service is null!")
             localServiceMap[service] = localService
             localService
         }
